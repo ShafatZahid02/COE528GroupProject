@@ -5,23 +5,30 @@
  */
 package coe528project;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.fxml.Initializable;
+import java.io.IOException;
+import javafx.event.ActionEvent;
+
+
 
 /**
  * FXML Controller class
  *
  * @author Citizen Kane
  */
-public class OwnerstartscreenController implements Initializable {
-   
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-        public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-
+public class OwnerstartscreenController{
+    
+    
+    Main m = new Main();
+    
+    public void clickBooks(ActionEvent e) throws IOException {
+        m.changeScene("owner-books-screen.fxml");
+    }
+    
+    public void clickCustomers(ActionEvent e) throws IOException {
+        m.changeScene("owner-customer-screen.fxml");
+    }
+    
+    public void clickLogout(ActionEvent e) throws IOException {
+        m.changeScene("login.fxml");
+    }
 }
