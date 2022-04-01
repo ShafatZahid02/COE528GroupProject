@@ -23,8 +23,8 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         bookstore = stage;
-        Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
-        
+        //Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("ownerStartScreen.fxml"));
         Scene scene = new Scene(root);
         Image logo = new Image("library.jpg");
         stage.getIcons().add(logo);

@@ -3,11 +3,14 @@ package coe528project;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -19,24 +22,33 @@ public class loginController {
     private TextField username;
     @FXML 
     private PasswordField password;
+    @FXML 
+    private Label loginMessage;
     /**
      * Initializes the controller class.
      * @param e
      * @throws java.io.IOException
      */
-    User current;
+    User current = new User();
+    CustomerStartScreenController input;
     public void checkLogin(ActionEvent e) throws IOException {
         Main m = new Main();
         if ((username.getText().equals("admin"))&&(password.getText().equals("admin")))
-            m.changeScene("owner-start-screen.fxml");
-        else if (current.login(username.getText(), password.getText()))//having a bunch of problems with this see if it improves after users are implelemented
-           m.changeScene("customer-start-screen.fxml");        
+            m.changeScene("ownerStartScreen.fxml");
+        //different because I have to pass stuff through
+        else if (current.login(username.getText(), password.getText())){
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("customerStartScreen.fxml")); 
+            Parent customerParent = loader.load();
+            Scene customerScene = new Scene(customerParent);
+            CustomerStartScreenController controller = loader.getController();
+            controller.welcomeMessage(username.getText());
+            Stage window = (Stage) ((Node)e.getSource()).getScene().getWindow();
+            window.setScene(customerScene);
+            window.show();
+        }
         else{
-            Alert alert = new Alert (AlertType.ERROR);
-            alert.setTitle("Wrong Login");
-            alert.setHeaderText("Incorrect login info");
-            alert.setContentText("You have entered the wrong username and/or password");
-            
+            loginMessage.setText("Wrong Username and/or Password");
         }            
     }    
     

@@ -15,10 +15,11 @@
       <Button fx:id="login" layoutX="318.0" layoutY="253.0" mnemonicParsing="false" onAction="#checkLogin" prefHeight="29.0" prefWidth="119.0" text="Login" />
       <Label layoutX="252.0" layoutY="164.0" prefHeight="29.0" prefWidth="65.0" text="Username:" />
       <Label layoutX="252.0" layoutY="212.0" prefHeight="29.0" prefWidth="74.0" text="Password:" />
-      <Text layoutX="252.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to the Bookstore App  ">
+      <Text layoutX="252.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to the Bookstore App  ">
          <font>
             <Font size="13.0" />
          </font>
       </Text>
+      <Label fx:id="loginMessage" layoutX="318.0" layoutY="139.0" />
    </children>
 </AnchorPane>
