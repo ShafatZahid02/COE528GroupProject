@@ -15,7 +15,6 @@ import java.util.List;
 public class User {
     private String username;
     private String password;
-    private String status;
     private int points = 0;
     private double transactionCost = 0;
     static List<User> users = new ArrayList<>();
@@ -85,10 +84,6 @@ public class User {
         return status;
     }
     */
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public double getTransactionCost() {
         return transactionCost;
     }

@@ -1,7 +1,10 @@
 package coe528project;
 
+
+
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.control.CheckBox;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -16,7 +19,7 @@ import java.util.List;
 public class Book {
     private String bookName;
     private double bookPrice;
-    private boolean selected = false;
+    CheckBox remark = new CheckBox();
     static List<Book> books = new ArrayList<>();     
 
     public Book() {
@@ -66,5 +69,13 @@ public class Book {
         
         System.out.println(test);
     }*/
+
+    public CheckBox getRemark() {
+        return remark;
+    }
+
+    public void setRemark(CheckBox remark) {
+        this.remark = remark;
+    }
     
 }

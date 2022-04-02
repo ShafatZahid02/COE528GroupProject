@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -31,7 +32,7 @@ public class CustomerStartScreenController implements Initializable {
     @FXML
     private TableColumn<User, Double> priceColumn;
     @FXML
-    private TableColumn<User, Boolean> selectColumn;
+    private TableColumn<User, CheckBox> selectColumn;
     @FXML
     private Label customerGreeting;
     
@@ -47,9 +48,18 @@ public class CustomerStartScreenController implements Initializable {
     public void clickLogout(ActionEvent e) throws IOException {
         m.changeScene("login.fxml");
     }
-     public void clickBuy(ActionEvent e) throws IOException {
+     public void clickBuy(ActionEvent e) throws IOException {//pass in cost to the first and second method also true for second method and current
+        double cost = 0;
+        cost = getBook().stream().filter((cycle) -> (cycle.getRemark().isSelected())).map((cycle) -> cycle.getBookPrice()).reduce(cost, (accumulator, _item) -> accumulator + _item);
+        /*
+        for (Book cycle : getBook()){
+            if (cycle.getRemark().isSelected()){
+                cost += cycle.getBookPrice();
+            }
+        }
+        */
     }
-    public void clickRedeem(ActionEvent e) throws IOException {
+    public void clickRedeem(ActionEvent e) throws IOException {//pass in 0 for first method and cost for second with false also current for user
     }
     /**
      * Initializes the controller class.
@@ -60,7 +70,7 @@ public class CustomerStartScreenController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         nameColumn.setCellValueFactory(new PropertyValueFactory<> ("bookName"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<> ("bookPrice"));
-        selectColumn.setCellValueFactory(new PropertyValueFactory<> ("selected"));
+        selectColumn.setCellValueFactory(new PropertyValueFactory<> ("remark"));
         table.setItems(getBook());
     }    
     
