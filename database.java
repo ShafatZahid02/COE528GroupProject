@@ -47,7 +47,7 @@ public class database {
         ArrayList<Customer> customers = new ArrayList<>();
         try{
             customerList.close();
-            int check = 0, loginCount, points;
+            int loginCount, points;
             String username, password, status;
             double transactionCost;
             File customerFile = new File(".\\customers.txt");
@@ -79,7 +79,6 @@ public class database {
         ArrayList<Book> books = new ArrayList<>();
         try{            
             bookList.close();
-            Boolean check = false;
             String bookName = "";
             double Price = 0;
             File bookFile = new File(".\\books.txt");            
