@@ -46,9 +46,11 @@ public class OwnerBooksScreenController implements Initializable{
     
     public void clickAdd(ActionEvent e) throws IOException {
         enter = new Book (Name.getText(),Double.parseDouble(Price.getText()));  
-        enter.add(enter);
-        booksTxtFile.updateBookList(enter.getList());
-        m.changeScene("ownerBooksScreen.fxml");
+        if (!Name.getText().isEmpty()){
+            enter.add(enter);
+            booksTxtFile.updateBookList(enter.getList());
+            m.changeScene("ownerBooksScreen.fxml");
+        }
     }
     
    public void clickDelete (ActionEvent e) throws IOException {      

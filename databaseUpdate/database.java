@@ -39,7 +39,7 @@ public class database {
         try{
             FileWriter customerList = new FileWriter("customers.txt");
             for (User customer: customers)
-                customerList.write(customer.getUsername() + "\n" + customer.getPassword() + "\n");  
+                customerList.write(customer.getUsername() + "\n" + customer.getPassword() + "\n" + customer.getPoints() + "\n");  
             customerList.close();            
         }catch(IOException e){
             System.out.println("An error occurred.");
@@ -54,14 +54,17 @@ public class database {
         
         ArrayList<User> customers = new ArrayList<>();
         try{            
-            String username, password;            
+            String username, password;  
+            int points;
             File customerFile = new File(".\\customers.txt");
             Scanner read = new Scanner(customerFile);
             read.useDelimiter("\n");
             while (read.hasNext()) {
                 username = read.next();
-                password = read.next();                
+                password = read.next();       
+                points = Integer.parseInt(read.next());
                 User customer = new User(username, password);
+                customer.setPoints(points);
                 customers.add(customer);
             }
             read.close();

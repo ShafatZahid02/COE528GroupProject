@@ -12,7 +12,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import java.lang.Math;
 
 /**
  * FXML Controller class
@@ -26,25 +25,13 @@ public class CustomerCostScreenController implements Initializable {
     private Label points;
     
     Main m = new Main();
-    
-    public void costMessage (double money){
-        cost.setText("Total Cost: $" + money);
+    //put in abstract
+    public void costMessage (User current,double money){
+        cost.setText(current.getStats().cost(current, money));
     }
-    
-    public void pointsMessage (User current, double money, boolean operation){//boolean to switch between buy and redeem
-        if (operation == true){
-            current.setPoints((int) (current.getPoints() + Math.round(money * 10)));
-        }
-        else{
-            if (current.getPoints()>=money*10){
-                current.setPoints((int) (current.getPoints() - Math.round(money * 10)));
-            }
-            else{
-                costMessage(money-current.getPoints()/10);
-                current.setPoints(0);
-            }
-        }
-        points.setText("Points: " + current.getPoints() + ", Status: " + current.getStatus());
+    //put in abstract
+    public void pointsMessage (User current, double money){
+        points.setText(current.getStats().standing(current, money));        
     }
     
     public void clickLogout(ActionEvent e) throws IOException {

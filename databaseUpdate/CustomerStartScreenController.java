@@ -44,7 +44,7 @@ public class CustomerStartScreenController implements Initializable {
     Main m = new Main();
     Book enter = new Book();
     User current = new User ();
-    double cost;
+    double cost = 0;
     
     public void welcomeMessage (String username){
         current = current.findUser(username);
@@ -55,7 +55,6 @@ public class CustomerStartScreenController implements Initializable {
         m.changeScene("login.fxml");
     }
      public void clickBuy(ActionEvent e) throws IOException {//pass in cost to the first and second method also true for second method and current
-        cost = 0;
         cost = getBook().stream().filter((cycle) -> (cycle.getRemark().isSelected())).map((cycle) -> cycle.getBookPrice()).reduce(cost, (accumulator, _item) -> accumulator + _item);
         /*
         for (Book cycle : getBook()){
@@ -64,27 +63,30 @@ public class CustomerStartScreenController implements Initializable {
             }
         }
         */
+        
+        current.setStats1();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("customerCostScreen.fxml")); 
         Parent customerCostParent = loader.load();
         Scene customerCostScene = new Scene(customerCostParent);
         CustomerCostScreenController controller = loader.getController();
-        controller.costMessage(cost);
-        controller.pointsMessage(current,cost,true);
+        controller.costMessage(current,cost);
+        controller.pointsMessage(current,cost);
         Stage window = (Stage) ((Node)e.getSource()).getScene().getWindow();
         window.setScene(customerCostScene);
         window.show();
     }
     public void clickRedeem(ActionEvent e) throws IOException {//pass in 0 for first method and cost for second with false also current for user
-        cost = 0;
         cost = getBook().stream().filter((cycle) -> (cycle.getRemark().isSelected())).map((cycle) -> cycle.getBookPrice()).reduce(cost, (accumulator, _item) -> accumulator + _item);
+        current.setStats2();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("customerCostScreen.fxml")); 
         Parent customerCostParent = loader.load();
         Scene customerCostScene = new Scene(customerCostParent);
         CustomerCostScreenController controller = loader.getController();
-        controller.costMessage(0);
-        controller.pointsMessage(current,cost,false);
+        //
+        controller.costMessage(current, 0);
+        controller.pointsMessage(current,cost);
         Stage window = (Stage) ((Node)e.getSource()).getScene().getWindow();
         window.setScene(customerCostScene);
         window.show();

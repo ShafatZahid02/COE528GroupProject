@@ -17,8 +17,10 @@ public class User {
     private String username;
     private String password;
     private int points = 0;
+    private purchase stats;
     private double transactionCost = 0;
     static ArrayList<User> users = new ArrayList<>();
+    database x = database.getInstance();
     
     //private String UsernameInput; //temporary variable to store Scanner username input
     //private String PasswordInput; //temporary variable to store Scanner password input
@@ -79,6 +81,7 @@ public class User {
 
     public void setPoints(int points) {
         this.points = points;
+        x.updateCustomerList(this.getList());
     }
     /*
     public String getStatus() {
@@ -94,6 +97,7 @@ public class User {
     }
     //maybe this should be another file
     public User findUser (String U){
+        
         for (User now: users)//cycles through all users
             if (U.equals(now.getUsername()))
                 return now;
@@ -123,5 +127,17 @@ public class User {
             return("gold");
         else 
             return("silver");
+    }
+    
+    public purchase getStats() {
+        return stats;
+    }
+
+    public void setStats1() {
+        stats = new buy();
+    }
+    
+    public void setStats2() {
+        stats = new redeem();
     }
 }

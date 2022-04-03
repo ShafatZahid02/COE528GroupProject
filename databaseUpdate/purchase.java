@@ -9,6 +9,7 @@ package coe528project;
  *
  * @author Citizen Kane
  */
-public class purchase {
-    
+public abstract class purchase {
+    public abstract String standing(User current, double money);
+    public abstract String cost (User current, double money);
 }

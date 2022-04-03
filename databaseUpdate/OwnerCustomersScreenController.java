@@ -46,13 +46,12 @@ public class OwnerCustomersScreenController implements Initializable {
     }
     public void clickAdd(ActionEvent e) throws IOException {        
         enter = new User (username.getText(),password.getText());  
-        if (enter.findUser(username.getText()) != null)
-            m.changeScene("ownerCustomersScreen.fxml");
-        else{
+        if (enter.findUser(username.getText()) == null && !username.getText().isEmpty()){
             enter.register(enter);
             customerTxtFile.updateCustomerList(enter.getList());
             m.changeScene("ownerCustomersScreen.fxml");
-        }
+        }        
+        
         
     }
     public void clickDelete(ActionEvent e) throws IOException {
