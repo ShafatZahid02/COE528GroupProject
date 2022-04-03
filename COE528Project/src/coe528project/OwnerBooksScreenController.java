@@ -45,10 +45,12 @@ public class OwnerBooksScreenController implements Initializable{
         enter = new Book (Name.getText(),Double.parseDouble(Price.getText()));  
         enter.add(enter);
         m.changeScene("ownerBooksScreen.fxml");
+        //Table.getItems().add(enter);
     }
     
     public void clickDelete (ActionEvent e) throws IOException {
-        
+        enter.delete(Table.getSelectionModel().getSelectedItem());
+        m.changeScene("ownerBooksScreen.fxml");        
     }
     
     @Override

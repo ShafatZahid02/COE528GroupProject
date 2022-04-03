@@ -49,6 +49,8 @@ public class OwnerCustomersScreenController implements Initializable {
         m.changeScene("ownerCustomersScreen.fxml");
     }
     public void clickDelete(ActionEvent e) throws IOException {
+        enter.unregister(table.getSelectionModel().getSelectedItem());
+        m.changeScene("ownerCustomersScreen.fxml");  
     }
 
     /**
